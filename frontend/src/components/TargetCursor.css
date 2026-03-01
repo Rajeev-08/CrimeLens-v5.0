@@ -1,0 +1,41 @@
+/* frontend/src/components/TargetCursor.css */
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999; /* Ensure it stays on top of everything */
+}
+
+.target-cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #000000; 
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* frontend/src/components/TargetCursor.css */
+
+/* ... (the wrapper and dot styles remain the same) */
+
+.target-cursor-corner {
+  position: absolute;
+  /* --- CHANGE 1: Smaller bracket sides --- */
+  width: 8px;   /* was 12px */
+  height: 8px;  /* was 12px */
+  /* --- --------------------------------- --- */
+  border: 3px solid #000000; 
+  box-sizing: border-box;
+}
+
+/* --- CHANGE 2: Pull brackets closer to the center dot --- */
+/* The top, bottom, left, and right values are brought in from -18px to -14px */
+.corner-tl { border-right: none; border-bottom: none; top: -14px; left: -14px; }
+.corner-tr { border-left: none; border-bottom: none; top: -14px; right: -14px; }
+.corner-br { border-left: none; border-top: none; bottom: -14px; right: -14px; }
+.corner-bl { border-right: none; border-top: none; bottom: -14px; left: -14px; }
+/* --- ----------------------------------------------------- --- */
