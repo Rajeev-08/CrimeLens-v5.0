@@ -19,8 +19,8 @@ backend/.env
 # ================================
 # ML Model Files (INSIDE BACKEND)
 # ================================
-backend/*.pt
-backend/*.pth
+#backend/*.pt
+#backend/*.pth
 *.onnx
 *.h5
 *.keras
