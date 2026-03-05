@@ -1,7 +1,6 @@
 // frontend/src/views/Welcome.js
 import React, { useState } from 'react';
 import Prism from '../components/Prism';
-import SplashCursor from '../components/SplashCursor'; // 1. Import the new component
 
 const Welcome = ({ onEnter, onShowFeatures, onShowDocs }) => {
   const [showSelection, setShowSelection] = useState(false);
@@ -9,8 +8,7 @@ const Welcome = ({ onEnter, onShowFeatures, onShowDocs }) => {
   return (
     <div className="relative w-full h-screen bg-[#060606] overflow-hidden font-sans text-white">
       
-      {/* 2. Add the SplashCursor here. It has position: fixed so it will cover the screen */}
-      <SplashCursor />
+      
 
       {/* --- BACKGROUND LAYER (Continuous) --- */}
       <div className="absolute inset-0 z-0 opacity-80">
