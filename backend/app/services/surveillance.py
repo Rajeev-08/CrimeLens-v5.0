@@ -38,7 +38,7 @@ except ImportError:
 violence_model = None
 violence_device = "cuda" if torch.cuda.is_available() else "cpu"
 violence_buffer = []
-SEQUENCE_LENGTH = 16
+SEQUENCE_LENGTH = 10
 VIOLENCE_THRESHOLD = 0.65
 
 try:
