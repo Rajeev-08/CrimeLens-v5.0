@@ -13,10 +13,11 @@ const SentimentTab = ({ activeFilters }) => {
     const [manualArea, setManualArea] = useState("");
 
     const fetchData = async (areaToSearch) => {
+        const API_BASE = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
         setLoading(true);
         try {
             console.log("Fetching sentiment for:", areaToSearch);
-            const response = await axios.post('http://127.0.0.1:8000/api/sentiment', {
+            const response = await axios.post(`${API_BASE}/api/sentiment`, {
                 areas: [areaToSearch], // Override with specific area
                 crimes: [],
                 severities: []

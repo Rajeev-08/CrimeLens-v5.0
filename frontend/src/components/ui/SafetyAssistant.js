@@ -44,7 +44,8 @@ const SafetyAssistant = ({ crimeContext }) => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:8000/api/safety-assistant', {
+            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+            const response = await fetch(`${API_BASE}/api/safety-assistant`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: messageText, crime_context: crimeContext }),

@@ -188,7 +188,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
     const [showPolice, setShowPolice] = useState(true);
     const [showHospitals, setShowHospitals] = useState(true);
     const [showIncidents, setShowIncidents] = useState(true); // ✅ NEW: Toggle user reports
-
+    const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     // 1. Initial Data Load
   // 1. Initial Data Load
     useEffect(() => {
@@ -196,7 +196,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
             if (!activeFilters) return;
             try {
                 // Step A: Get Crime Hotspots first
-                const hRes = await axios.post('http://localhost:8000/api/hotspots', { ...activeFilters, n_clusters: 15 });
+                const hRes = await axios.post(`${API_BASE}/api/hotspots`, { ...activeFilters, n_clusters: 15 });
                 setHeatmapPoints(hRes.data.heat_data);
                 setHotspotCenters(hRes.data.centers);
                 
@@ -215,7 +215,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
                 console.log(`Searching for amenities at: ${centerLat}, ${centerLon}`);
 
                 // Step B: Fetch Amenities for that SPECIFIC location
-                const aRes = await axios.post('http://localhost:8000/api/map-context', { lat: centerLat, lon: centerLon });
+                const aRes = await axios.post(`${API_BASE}/api/map-context`, { lat: centerLat, lon: centerLon });
                 setAmenities(aRes.data.amenities);
 
                 fetchIncidents(); // Fetch reports
@@ -228,7 +228,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
 
     const fetchIncidents = async () => {
         try {
-            const res = await axios.get('http://localhost:8000/api/incidents');
+            const res = await axios.get(`${API_BASE}/api/incidents`);
             setIncidents(res.data.incidents || []);
         } catch (e) {
             console.error("Failed to load incidents", e);
@@ -258,7 +258,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
         if (!tempReportLoc) return;
 
         try {
-            await axios.post('http://localhost:8000/api/report-incident', {
+            await axios.post(`${API_BASE}/api/report-incident`, {
                 lat: tempReportLoc[0],
                 lon: tempReportLoc[1],
                 description: reportDesc,
@@ -281,7 +281,7 @@ const UnifiedMapTab = ({ activeFilters }) => {
         setStatusMsg("Calculating route...");
         setRoute(null);
         try {
-            const res = await axios.post('http://localhost:8000/api/navigate', { start, end }, { timeout: 25000 });
+            const res = await axios.post(`${API_BASE}/api/navigate`, { start, end }, { timeout: 25000 });
             setRoute(res.data);
             setStatusMsg("");
         } catch (err) {

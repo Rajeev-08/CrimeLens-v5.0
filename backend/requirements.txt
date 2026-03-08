@@ -12,8 +12,8 @@ textblob
 google-genai
 python-dotenv
 opencv-python
-#torch
-#torchvision
+torch
+torchvision
 ultralytics
 tensorflow
 supervision

@@ -32,7 +32,8 @@ const ComparisonTab = ({ activeFilters }) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/comparison', activeFilters);
+                const API_BASE = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+                const response = await axios.post(`${API_BASE}/api/comparison`, activeFilters);
                 setData(response.data);
             } catch (error) {
                 console.error("Comparison load error:", error);

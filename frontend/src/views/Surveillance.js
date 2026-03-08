@@ -5,13 +5,13 @@ const Surveillance = ({ onBack }) => {
     const [streamSource, setStreamSource] = useState(null); 
     const [detectionMode, setDetectionMode] = useState("weapon"); // 'weapon', 'violence', 'shoplifting'
     const [isUploading, setIsUploading] = useState(false);
-
+    const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     const handleWebcamStart = () => {
         setStreamSource("webcam");
     };
     const handleStopStream = async () => {
     try {
-        await axios.get("http://localhost:8000/api/surveillance/stop");
+        await axios.get(`${API_BASE}/api/surveillance/stop`);
         setStreamSource(null); // This clears the <img> tag in the UI
     } catch (err) {
         console.error("Failed to stop stream", err);
@@ -26,7 +26,7 @@ const Surveillance = ({ onBack }) => {
         formData.append("file", file);
 
         try {
-            const res = await axios.post("http://localhost:8000/api/surveillance/upload", formData);
+            const res = await axios.post(`${API_BASE}/api/surveillance/upload`, formData);
             setStreamSource(res.data.path);
         } catch (err) {
             alert("Upload failed");
@@ -151,7 +151,7 @@ const Surveillance = ({ onBack }) => {
                     {streamSource ? (
                         <img 
                             // Dynamic URL updates when detectionMode changes
-                            src={`http://localhost:8000/api/surveillance/feed?source=${streamSource}&mode=${detectionMode}&t=${Date.now()}`} 
+                            src={`${API_BASE}/api/surveillance/feed?source=${streamSource}&mode=${detectionMode}&t=${Date.now()}`} 
                             alt="Live Stream"
                             className="max-h-full max-w-full object-contain"
                         />

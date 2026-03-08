@@ -13,7 +13,8 @@ export const generatePDF = async (activeFilters, dashboardRef, totalRecords) => 
         
         let aiSummary = "Generating analysis...";
         try {
-            const res = await axios.post('http://localhost:8000/api/generate-report-summary', {
+            const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+            const res = await axios.post(`${API_BASE}/api/generate-report-summary`, {
                 area: activeFilters.areas.length > 0 ? activeFilters.areas[0] : "All City",
                 crime_types: activeFilters.crimes,
                 total_crimes: totalRecords,

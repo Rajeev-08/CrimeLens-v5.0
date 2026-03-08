@@ -11,9 +11,8 @@ const ThreeDMapTab = ({ activeFilters }) => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // Fetch data from your existing backend endpoint
-                // We send activeFilters so the backend sends relevant points
-                const response = await axios.post('http://127.0.0.1:8000/api/hotspots', {
+                const API_BASE = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+                const response = await axios.post(`${API_BASE}/api/hotspots`, {
                     filters: activeFilters
                 });
                 
