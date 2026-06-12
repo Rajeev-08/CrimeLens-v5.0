@@ -1,7 +1,7 @@
 
 ---
 
-# 🕵️‍♂️ CrimeLens v3.0
+# 🕵️‍♂️ CrimeLens v5.0
 
 **CrimeLens** is an advanced AI-powered crime intelligence platform designed to analyze historical data, predict future risks, and provide real-time surveillance capabilities. It bridges the gap between raw data and actionable security insights using machine learning, computer vision, and generative AI.
 
